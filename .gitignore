@@ -3,8 +3,6 @@
 
 ### VisualStudioCode ###
 .vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
 !.vscode/*.code-snippets
@@ -50,6 +48,9 @@ $RECYCLE.BIN/
 IntroPARCO_Homework1.pdf
 
 #CSV files of the results
-.CSV
+*.csv
+
+#OUT files
+*.out
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode
