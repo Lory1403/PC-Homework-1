@@ -1,5 +1,8 @@
 #!/bin/bash
 # Author: Lorenzo Fasol
+
+mkdir results
+
 echo -e "\nArray addition and vectorization\n"
 
 echo -e "--> Sequential routine1()\n"

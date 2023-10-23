@@ -122,6 +122,7 @@ int main(int argc, char const *argv[])
         }
     }
     
+    if (outputFileEnabled) filename = "results/" + filename;
     ofstream outputFile(filename);          // Create output file
     if (!outputFile.is_open() && !outputFileEnabled) 
     {   // File close but not required or incorrect
@@ -134,6 +135,7 @@ int main(int argc, char const *argv[])
     
     // Matrix initialization
     matrixInitialization();
+    if (outputFileEnabled) outputFile << "BlockSize,Test1,Test2,Test3" << endl;
     for (int i = 2; i <= 8; i++) {
         // Calculation of sequantial block size
         sequentialB(i);

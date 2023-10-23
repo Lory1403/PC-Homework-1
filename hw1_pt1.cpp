@@ -63,7 +63,7 @@ int main(int argc, char const *argv[]) {
         string arg = argv[i];
         
         // Check for recognized flags
-        if (arg == "-f" || arg == "--file" || arg == "-p" || arg == "--print") {
+        if (arg == "-f" || arg == "--file" || arg == "-p" || arg == "--print" || arg == "-s" || arg == "--size") {
             if (i + 1 < argc && argv[i + 1][0] != '-') {
                 // Check if there is a non-flag argument following the flag
                 flagMap[arg] = argv[i+1];
@@ -80,10 +80,11 @@ int main(int argc, char const *argv[]) {
     string filename = "not_required";   // Variable for the name of the output file
     bool printRequired = false;         // Variable for print enabled
     bool outputFileEnabled = false;     // Variable for output file enabled
+    bool definedSize = false;           // Variable 
 
-    for (const auto& entry : flagMap) {
-        const std::string& flag = entry.first;  
-        const std::string& value = entry.second;
+    for (const pair entry : flagMap) {
+        string flag = entry.first;  
+        string value = entry.second;
 
         if (flag == "-f" || flag == "--file")   // Flag for output file
         {
@@ -97,11 +98,24 @@ int main(int argc, char const *argv[]) {
         } 
         else if (flag == "-p" || flag == "--print") // Flag for print enable
         {
-            printRequired = true;           // Print enabled
+            printRequired = true;       // Print enabled
+        }
+        else if (flag == "-s" || flag == "--size") // Flag for defined size
+        {
+            try
+            {
+                n = stoi(value);
+                definedSize = true;     // Defined size enabled
+            }
+            catch(const std::exception& e)
+            {
+                cerr << "> Error with the given size of the array" << endl << ">> Default test cases have been used" << endl << endl;
+            }
         }
     }
     
-    ofstream outputFile(filename);          // Create output file
+    if (outputFileEnabled) filename = "results/" + filename;
+    ofstream outputFile(filename);      // Create output file
     if (!outputFile.is_open() && !outputFileEnabled) 
     {   // File close but not required or incorrect
         remove(filename.c_str());       // Delete output file
@@ -114,17 +128,19 @@ int main(int argc, char const *argv[]) {
     // Output file initialization
     if (outputFileEnabled) outputFile << "ArraySize,Test1,Test2,Test3" << endl;
     // For loop
-    for (int i = 4; i <= 22; i++) {
+    bool loop = true;
+    int i = (!definedSize) ? 4 : 0;
+    while (loop) {
         // Calculation of sequential lenght n
-        sequentialN(i);
+        if (!definedSize) sequentialN(i);
         // Array initialization with new lenght n
         arrayInitialization();
         // Print length n
-        if (printRequired) cout << "Array size 2^" << i << endl;
+        if (printRequired) cout << "Array size -> " << n << endl;
         // Save lenght n in the file
         if (outputFileEnabled) outputFile << n;
         // Calculate three times the performance for reliable results
-        for (int i = 0; i < 3; i++) {
+        for (int t = 0; t < 3; t++) {
             // Call the routine
             routine1();
             // Print the results
@@ -135,6 +151,10 @@ int main(int argc, char const *argv[]) {
         // Endl for print and file formatting
         if (printRequired) cout << endl;        
         if (outputFileEnabled) outputFile << endl;
+        /* Exit the loop if the i has exceeded the default reference value or 
+        if the user has defined a size (execute the routine only one time) */
+        if (i >= 22 || definedSize) loop = false;
+        i++;
     }
     // Close output file
     if (outputFileEnabled) outputFile.close();
