@@ -23,7 +23,7 @@ To execute the code, follow these steps:
 
 3. *(Optional)* Personalize the code by changing the values of the arguments in the `script.sh` file.
    
-4. Run the following command to run the script: `./script.sh`
+4. Run the following command to run the script: `./script.sh`.
 
 ## Usage
 Accessing the `./script.sh` file, you can run the programs with various options. The programs accept command-line arguments to customize its behavior. Here are the available options:
@@ -54,10 +54,12 @@ To run the program and display results in the terminal:
 ./hw1_pt* -p
 ```
 **Specifying Array Size**  
+> [!NOTE] 
+> **C++ Compiler**: This flag is available on the first program only: `hw1_pt1`.
 To run the program with a specific array size (e.g., 1024):
 
 ```bash
-./hw1_pt* -s 1024
+./hw1_pt1 -s 1024
 ```
 
 ## Output
@@ -69,5 +71,5 @@ n1,elapsed_time_1,elapsed_time_2,elapsed_time_3
 n2,elapsed_time_1,elapsed_time_2,elapsed_time_3
 ...
 ```
-* **\`ArraySize/BlockSize\`**: The size of the array.
+* **\`ArraySize/BlockSize\`**: The size of the array (depends on the program).
 * **\`Test1\`**, **\`Test2\`**, **\`Test3\`**: Execution times of the routine for three test runs.
