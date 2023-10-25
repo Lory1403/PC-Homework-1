@@ -102,9 +102,9 @@ int main(int argc, char const *argv[])
     bool printRequired = false;         // Variable for print enabled
     bool outputFileEnabled = false;     // Variable for output file enabled
 
-    for (const auto& entry : flagMap) {
-        const std::string& flag = entry.first;  
-        const std::string& value = entry.second;
+    for (const pair<string, string>& entry : flagMap) {
+        string flag = entry.first;  
+        string value = entry.second;
 
         if (flag == "-f" || flag == "--file")   // Flag for output file
         {

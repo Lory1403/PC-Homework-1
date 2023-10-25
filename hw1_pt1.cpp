@@ -82,7 +82,7 @@ int main(int argc, char const *argv[]) {
     bool outputFileEnabled = false;     // Variable for output file enabled
     bool definedSize = false;           // Variable 
 
-    for (const pair entry : flagMap) {
+    for (const pair<string, string>& entry : flagMap) {
         string flag = entry.first;  
         string value = entry.second;
 

@@ -11,7 +11,7 @@ g++ hw1_pt1.cpp -o hw1_pt1_sequential.out
 wait
 
 echo -e "--> Implicit parallelism techniques on routine1()\n"
-g++ hw1_pt1.cpp -O2 -o hw1_pt1_parallel.out
+g++ hw1_pt1.cpp -O2 -ftree-vectorize -funroll-loops -fprefetch-loop-arrays -march=native -o hw1_pt1_parallel.out
 ./hw1_pt1_parallel.out -f hw1_pt1_parallel.csv
 wait
 
@@ -25,6 +25,6 @@ g++ hw1_pt2.cpp -o hw1_pt2_sequential.out
 wait
 
 echo -e "--> Implicit parallelism techniques on routine1()\n"
-g++ hw1_pt2.cpp -O2 -o hw1_pt2_parallel.out
+g++ hw1_pt2.cpp -O2 -ftree-vectorize -funroll-loops -fprefetch-loop-arrays -march=native -o hw1_pt2_parallel.out
 ./hw1_pt2_parallel.out -f hw1_pt2_parallel.csv
 wait
