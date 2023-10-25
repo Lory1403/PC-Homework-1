@@ -19,7 +19,7 @@ This guide provides instructions on how to personalize and run the provided C++ 
 To execute the code, follow these steps:  
 1. Open your terminal.
 
-2. Navigate to the directory containing the ce code file and your terminal.
+2. Navigate to the directory containing the code file and your terminal.
 
 3. *(Optional)* Personalize the code by changing the values of the arguments in the `script.sh` file.
    
@@ -38,20 +38,20 @@ Accessing the `./script.sh` file, you can run the programs with various options.
 **Basic Usage**  
 To run the program with default settings and no file output:
 ```bash
-./hw1_pt*
+./hw1_pt1
 ```
 
 **Specifying Output File**  
 To run the program and save results to a file named "output.csv":
 
 ```bash
-./hw1_pt* -f output.csv
+./hw1_pt1 -f output.csv
 ```
 **Enabling Printing**  
 To run the program and display results in the terminal:
 
 ```bash
-./hw1_pt* -p
+./hw1_pt1 -p
 ```
 **Specifying Array Size**  
 > [!NOTE] 
@@ -63,9 +63,9 @@ To run the program with a specific array size (e.g., 1024):
 ```
 
 ## Output
-If you specify an output file using the **\`-f\`** or **\`--file\`** option, the results will be saved in a *.CSV* file with the following format:
+If you specify an output file using the **\`-f\`** or **\`--file\`** option, the results will be saved in a `.CSV` file with the following format:
 
-```python
+```csv
 ArraySize/BlockSize,Test1,Test2,Test3
 n1,elapsed_time_1,elapsed_time_2,elapsed_time_3
 n2,elapsed_time_1,elapsed_time_2,elapsed_time_3
