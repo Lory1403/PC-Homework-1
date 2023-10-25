@@ -32,7 +32,7 @@
 \section{Array addition and vectorization}
 In the first section of the Homework, both \textit{Task1} and \textit{Task2} involve the element-wise addition of two arrays, defined as A and B. This operation is executed through the implementation of two distinct routines, denoted as \texttt{routine1()} and \texttt{routine1()}, respectively. The result of this addition is stored in another array, denoted as C, of the same size as arrays A and B.\\
 %inserisci che le due rotuine sono uguali quindi la differenza è in compilazione
-Given the necessity for Task 2 to incorporate implicit parallelism techniques, it's crucial to underscore that the actual code implementation for both tasks remains constant. While the code structure remains unaltered, the essential distinction emerges in how the compiler handles and optimizes the code.\\
+Given the necessity for Task 2 to incorporate implicit parallelism techniques, it is crucial to highlight that the actual code implementation for both tasks remains constant. While the code structure remains unaltered, the essential distinction emerges in how the compiler handles and optimizes the code.\\
 \textit{Task1} can be seamlessly compiled to yield a sequential program, with no additional requirements. In contrast, \textit{Task2} demands the incorporation of specific compilation flags designed to harness implicit parallelism techniques. These flags are essential in the compilation process, enabling the code to exploit parallelism and optimize performance.\\
 The compiler used, \texttt{GNU C++ compiler (G++)} in this specific case, offers a range of flag combinations for optimizing code. Following extensive experimentation to determine the most effective combination of these flags that leads to an optimal result, I have arrived at the following conclusions. Two potential solutions have emerged, yet I favour the second option due to its higher level of specificity and detail.\\\\
 The solutions are the following:
@@ -54,7 +54,7 @@ To conduct the tests, the default version of the program was employed, where thr
 
 \subsection*{Results analysis}
 I opted to perform the tests on my laptop instead of the cluster due to the lack of support for the required libraries in the cluster's G++ version.
-To provide a criterion for comparison, I provide the technical features of the machine used for the tests:
+To provide a criteria for comparison, I provide the technical features of the machine used for the tests:
 \begin{itemize}
     \item \textbf{CPU}: Intel\textsuperscript{\textregistered} Core\textsuperscript{\texttrademark} i7-9750H at 2.60GHz
     \item \textbf{RAM}: 16GB
@@ -68,7 +68,7 @@ To provide a criterion for comparison, I provide the technical features of the m
 The execution times of the sequential and parallel versions of the program are presented in the following table and graph.
 In addition to the average execution times, the speedup and percentage gain values are also provided, which are calculated as follows:
 \begin{equation}
-    Speedup(S) S = \frac{Sequential Execution Time}{Parallel Execution Time}
+    Speedup(S) = \frac{Sequential Execution Time}{Parallel Execution Time}
 \end{equation} \\
 \begin{equation}
     Percentage Gain(PG) = \frac{Sequential Execution Time - Parallel Execution Time}{Sequential Execution Time * 100}
@@ -201,7 +201,7 @@ to be processed. Consequently, the trend reinforces the relationship between arr
 
 \clearpage
 \section{Matrix copy via block reverse ordering}
-In the second section of the homework, like the preceding section, both \textit{Task1} and \textit{Task2} entail the execution of identical actions.%
+In the second section of the homework, like the preceding section, both \textit{Task1} and \textit{Task2} entail the execution of identical actions. %
 In this instance, the primary emphasis remains directed toward the compilation flags employed during the compilation process. The compilation commands and their associated flags remain unchanged from those utilized in previous instances but applied to the code files specific to this part.\\
 In this scenario, the program operates on a matrix, defined as M, with a size denoted as n, which is simplified for clarity to be a power of two. %
 The matrix is divided into blocks, each with a size of b.\\
@@ -211,16 +211,16 @@ The following code is designed to perform the task operating with matrices of po
 \begin{code}
     \captionof{listing}{\label{code:matrix}Swapping block algorithm}
     \begin{minted}{cpp}
-    for (int i = 0; i < dim / 2; i += b) {
-        for (int j = 0; j < dim; j += b) {
-            for (int k = 0; k < b; k++) {
-                for (int l = 0; l < b; l++) {
-                    o[i + k][j + l] = m[dim - i - (b - k)][dim - j - (b - l)];
-                    o[dim - i - (b - k)][dim - j - (b - l)] = m[i + k][j + l];
-                }
+for (int i = 0; i < dim / 2; i += b) {
+    for (int j = 0; j < dim; j += b) {
+        for (int k = 0; k < b; k++) {
+            for (int l = 0; l < b; l++) {
+                o[i + k][j + l] = m[dim - i - (b - k)][dim - j - (b - l)];
+                o[dim - i - (b - k)][dim - j - (b - l)] = m[i + k][j + l];
             }
         }
     }
+}
     \end{minted}
 \end{code}
 
@@ -315,7 +315,7 @@ Both of these values are identical and are calculated by multiplying the number 
 This property stems from the algorithm's characteristic of processing each matrix element only once, resulting in only one read and one write operation for each element of the matrix.\\
 The third value, denoted as t, represents the time required for the routine's execution, quantifying the duration in seconds. So the effective bandwidth can be calculated as follows:
 \begin{equation}
-    B_r = B_w = B_{r/w} = S_f \cdot n^2 = 4 \cdot (2^{12})^2 = 4 \cdot 4096^2
+    B_r = B_w = B_{r/w} = S_f \cdot n^2 = 4 \cdot (2^{12})^2 = 4 \cdot 4096^2\qquad[\textnormal{bytes}]
 \end{equation}
 \begin{equation}
     b=\frac{(B_r+B_w)/10^9}{t}=\frac{(2 \cdot B_{r/w})/10^9}{t}=\frac{(2 \cdot 4 \cdot 4096^2)/10^9}{t}\qquad[\textnormal{GB/s}]
