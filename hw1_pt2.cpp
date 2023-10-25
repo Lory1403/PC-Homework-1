@@ -122,7 +122,7 @@ int main(int argc, char const *argv[])
         }
     }
     
-    if (outputFileEnabled) filename = "results/" + filename;
+    if (outputFileEnabled) filename = filename;
     ofstream outputFile(filename);          // Create output file
     if (!outputFile.is_open() && !outputFileEnabled) 
     {   // File close but not required or incorrect
